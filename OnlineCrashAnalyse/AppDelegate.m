@@ -71,17 +71,17 @@ void crashExceptionHandler(NSException *exception) {
     //何时上传crash???
 //    [exception raise];
     
-    uploadCrashLog(logData,[NSString stringWithFormat:@"%@---%@---%@",name,reason,callStackSymbols]);
+    uploadCrashLog(logData);
 }
 
 //上传crash日志
-void uploadCrashLog(NSData *logData,NSString *logStr) {
+void uploadCrashLog(NSData *logData) {
     dispatch_semaphore_t semophore = dispatch_semaphore_create(0); // 创建信号量
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:nil];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://5vh6nd.natappfree.cc/book/demo"]];
     [request setHTTPMethod:@"POST"];
     request.HTTPBody = logData;
-    [request setValue:logStr forHTTPHeaderField:@"headMsg"];
+    [request setValue:@"text/plain" forHTTPHeaderField:@"content-type"];
     [[session dataTaskWithRequest:request
                 completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                     NSLog(@"response:%@",response);
