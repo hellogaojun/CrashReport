@@ -119,6 +119,7 @@ void uploadCrashLog(NSData *logData) {
     NSDate *nowDate = [NSDate date];
     NSDate *timeoutDate = [nowDate dateByAddingTimeInterval:crashMaxTimeout];
     
+    //如果本次没有上传成功,考虑在下次启动时重新上传!!!
     [[_urlSession dataTaskWithRequest:request
                     completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                         //如果最大等待时间内上传日志请求还没响应的话,就不再继续等待了

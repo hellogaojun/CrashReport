@@ -30,6 +30,7 @@ static NSString * const appId = @"b0a1a722b0";
 /**
  Reference:
  1.https://www.cnblogs.com/ciml/p/7422872.html
+ 2.https://bugly.qq.com/docs/user-guide/symbol-configuration-ios/?v=1553248351425
  
  
  没有dSYM文件的分析仅能用作测试阶段的分析.
