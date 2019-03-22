@@ -17,6 +17,12 @@ static NSString * const _appCrashHost = @"http://2j4qp2.natappfree.cc/book/demo"
 
 @implementation GJCrashManager
 
+/**
+ Reference:
+ 1.https://blog.csdn.net/weixin_34090562/article/details/87008863
+ 
+ */
+
 + (void)monitorCrash {
     /**
      crash收集上报
