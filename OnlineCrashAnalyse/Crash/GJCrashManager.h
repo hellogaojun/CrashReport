@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface GJCrashManager : NSObject
 
++ (void)monitorCrash;
+
 @end
 
 NS_ASSUME_NONNULL_END

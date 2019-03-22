@@ -20,7 +20,6 @@
 		E1542A372243281C00D926BB /* OnlineCrashAnalyseUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E1542A362243281C00D926BB /* OnlineCrashAnalyseUITests.m */; };
 		E1542A4722436E9500D926BB /* GJCrashInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1542A4622436E9500D926BB /* GJCrashInfo.m */; };
 		E1542A4A22436EC300D926BB /* GJCrashManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1542A4922436EC300D926BB /* GJCrashManager.m */; };
-		E1542A4D224382F200D926BB /* NSException+Exchange.m in Sources */ = {isa = PBXBuildFile; fileRef = E1542A4C224382F200D926BB /* NSException+Exchange.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,8 +67,6 @@
 		E1542A4622436E9500D926BB /* GJCrashInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GJCrashInfo.m; sourceTree = "<group>"; };
 		E1542A4822436EC300D926BB /* GJCrashManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GJCrashManager.h; sourceTree = "<group>"; };
 		E1542A4922436EC300D926BB /* GJCrashManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GJCrashManager.m; sourceTree = "<group>"; };
-		E1542A4B224382F200D926BB /* NSException+Exchange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSException+Exchange.h"; sourceTree = "<group>"; };
-		E1542A4C224382F200D926BB /* NSException+Exchange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSException+Exchange.m"; sourceTree = "<group>"; };
 		F385F85B7C00914B30757F78 /* libPods-OnlineCrashAnalyseUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OnlineCrashAnalyseUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E327CFFB80209CC4DD0FBA /* libPods-OnlineCrashAnalyseTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OnlineCrashAnalyseTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -176,8 +173,6 @@
 				E1542A4622436E9500D926BB /* GJCrashInfo.m */,
 				E1542A4822436EC300D926BB /* GJCrashManager.h */,
 				E1542A4922436EC300D926BB /* GJCrashManager.m */,
-				E1542A4B224382F200D926BB /* NSException+Exchange.h */,
-				E1542A4C224382F200D926BB /* NSException+Exchange.m */,
 			);
 			path = Crash;
 			sourceTree = "<group>";
@@ -402,7 +397,6 @@
 				E1542A4722436E9500D926BB /* GJCrashInfo.m in Sources */,
 				E1542A142243281A00D926BB /* AppDelegate.m in Sources */,
 				E1542A4A22436EC300D926BB /* GJCrashManager.m in Sources */,
-				E1542A4D224382F200D926BB /* NSException+Exchange.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

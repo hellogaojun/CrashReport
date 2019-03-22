@@ -17,6 +17,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface GJCrashInfo : NSObject
 
+@property (nonatomic, copy) NSString *crashName;
+@property (nonatomic, copy) NSString *crashReason;
+@property (nonatomic, copy) NSString *crashTime;
+@property (nonatomic, copy) NSArray  *crashStackSymbols;
+
++ (instancetype)crashInfoWithName:(NSString *)name
+                           reason:(NSString *)reason
+                               time:(NSString *)time
+                       stackSymbols:(NSArray *)stackSymbols;
+
 @end
 
 NS_ASSUME_NONNULL_END
