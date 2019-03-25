@@ -17,12 +17,6 @@ static NSString * const _appCrashHost = @"http://2j4qp2.natappfree.cc/book/demo"
 
 @implementation GJCrashManager
 
-/**
- Reference:
- 1.https://blog.csdn.net/weixin_34090562/article/details/87008863
- 
- */
-
 + (void)monitorCrash {
     /**
      crash收集上报
@@ -39,11 +33,17 @@ static NSString * const _appCrashHost = @"http://2j4qp2.natappfree.cc/book/demo"
     NSSetUncaughtExceptionHandler(&crashExceptionHandler);
     
     //2.signal类型
+    //abort()函数调用
     signal(SIGABRT, signalCrashExceptionHandler);
+    //非法指令
     signal(SIGILL,  signalCrashExceptionHandler);
+    //无效内存的引用
     signal(SIGSEGV, signalCrashExceptionHandler);
+    //浮点数异常
     signal(SIGFPE,  signalCrashExceptionHandler);
+    //内存地址未对齐
     signal(SIGBUS,  signalCrashExceptionHandler);
+    //端口发送消息失败
     signal(SIGPIPE, signalCrashExceptionHandler);
 }
 
@@ -61,7 +61,7 @@ void crashExceptionHandler(NSException *exception) {
     }
     _formatter.dateFormat = @"YYYY-MM-dd HH:mm:ss";
     NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
-    [_formatter setTimeZone:timeZone];
+    _formatter.timeZone = timeZone;
     
     NSLog(@"CrashTime:%@\n Name:%@\n Reason:%@\n UserInfo:%@\n callStackReturnAddresses:%@\n callStackSymbols:%@",[_formatter stringFromDate:[NSDate date]],name,reason,userInfo,callStackReturnAddresses,callStackSymbols);
     
@@ -95,7 +95,7 @@ void signalCrashExceptionHandler(int signal) {
     }
     _formatter.dateFormat = @"YYYY-MM-dd HH:mm:ss";
     NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
-    [_formatter setTimeZone:timeZone];
+    _formatter.timeZone = timeZone;
     
     //upload
     GJCrashInfo *crashInfo = [GJCrashInfo crashInfoWithName:name reason:reason time:[_formatter stringFromDate:[NSDate date]] stackSymbols:backtraces];
