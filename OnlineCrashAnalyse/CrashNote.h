@@ -28,6 +28,7 @@
          -[ViewController testException] (in OnlineCrashAnalyse-symbol) (ViewController.m:33)
         
     ***这种方式因为没有dSYM文件,通过工具导出dSYM文件,所以仅仅能用来测试阶段的分析***
+    ***建议还是在Debug状态下勾选dSYM文件***
  
  2.2 在Build Settings中勾选了dSYM
  在这种情况下导出的.crash文件,一般情况下标明了crash的位置所在,当然了我们也可以做反向验证(做16进制减法).这种情况下项目的dSYM文件位于Xcode中的Products目录下OnlineCrashAnalyse.app(有以下两种方式可以查看

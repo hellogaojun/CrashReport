@@ -27,6 +27,10 @@
   
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self testMemoryBoom];
+}
+
 - (IBAction)exceptionCrashAction:(UIButton *)sender {
     [self testException];
 }
@@ -36,11 +40,13 @@
     [self testSignal];
 }
 
+//普通异常
 - (void)testException {
     [self.mutableStr appendString:self.serverJson[@"str"]];
  
 }
 
+//signal错误
 - (void)testSignal {
     GJPerson *person = [GJPerson new];
     unsigned int count;
@@ -56,5 +62,23 @@
     free(properties);
     
 }
+
+//爆内存
+- (void)testMemoryBoom {
+    while (1) {
+        UIImage *tempImage = [UIImage imageNamed:@"temp"];
+        UIImageView *imView = [[UIImageView alloc]initWithImage:tempImage];
+        [self.view addSubview:imView];
+    }
+}
+
+//主线程卡死
+- (void)testMainThreadDead {
+    while (1) {
+        
+    }
+}
+
+//应用退到后台后,在background task模式下执行某些任务时由于超过后台保活阈值crash
 
 @end

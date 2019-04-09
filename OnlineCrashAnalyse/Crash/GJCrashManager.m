@@ -18,14 +18,6 @@ static NSString * const _appCrashHost = @"http://2j4qp2.natappfree.cc/book/demo"
 @implementation GJCrashManager
 
 + (void)monitorCrash {
-    /**
-     crash收集上报
-     
-     iOS Crash分为两种:
-     1.是由EXC_BAD_ACCESS引起的，原因是访问了不属于本进程的内存地址，有可能是访问已被释放的内存;
-     2.未被捕获的Objective-C异常（NSException),导致程序向自身发送了SIGABRT信号而崩溃.
-     
-     */
     
     //1.捕获异常类型
     //未知异常的捕获,系统在发生未知异常的情况下,首先讲该异常传递该函数,执行完改函数后,App退出.
@@ -45,6 +37,11 @@ static NSString * const _appCrashHost = @"http://2j4qp2.natappfree.cc/book/demo"
     signal(SIGBUS,  signalCrashExceptionHandler);
     //端口发送消息失败
     signal(SIGPIPE, signalCrashExceptionHandler);
+    
+    signal(SIGHUP, signalCrashExceptionHandler);
+    signal(SIGINT, signalCrashExceptionHandler);
+    signal(SIGQUIT, signalCrashExceptionHandler);
+    
 }
 
 #pragma mark - Exception
@@ -74,10 +71,11 @@ void crashExceptionHandler(NSException *exception) {
 }
 
 #pragma mark - Signal
-
+//捕获异常信号
 void signalCrashExceptionHandler(int signal) {
     void *callStack[128];
     int frames = backtrace(callStack, 128);
+    //获取当前的堆栈信息
     char **strs = backtrace_symbols(callStack, frames);
     NSMutableArray *backtraces = [NSMutableArray arrayWithCapacity:frames];
     for (NSInteger i = 0; i< frames; i++) {
@@ -105,6 +103,8 @@ void signalCrashExceptionHandler(int signal) {
 
 #pragma mark - Upload
 //上传crash日志
+//上传crash的时机,一种观点认为先将有关crash的堆栈信息保存在本地,app下次启动时再上传至服务器.
+//这是因为，在保存完这些堆栈信息以后，App 就崩溃了，崩溃后内存里的数据也就都没有了。而将数据保存在本地磁盘中，就可以在 App 下次启动时能够很方便地读取到这些信息。
 void uploadCrashLog(NSData *logData) {
     dispatch_semaphore_t semophore = dispatch_semaphore_create(0); // 创建信号量
     _urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:nil];

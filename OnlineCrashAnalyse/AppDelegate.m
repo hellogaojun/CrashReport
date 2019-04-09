@@ -20,9 +20,9 @@ static NSString * const appId = @"b0a1a722b0";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-//    [Bugly startWithAppId:appId];
+    [Bugly startWithAppId:appId];
     
-    [GJCrashManager monitorCrash];
+//    [GJCrashManager monitorCrash];
     
     return YES;
 }

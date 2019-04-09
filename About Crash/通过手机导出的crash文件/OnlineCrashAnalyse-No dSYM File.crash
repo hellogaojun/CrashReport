@@ -1,3 +1,7 @@
+Crash文件主要包含以下几个部分的信息
+关于Crash文件的详细说明,请参考Apple文档:https://developer.apple.com/library/archive/technotes/tn2151/_index.html
+
+一,进程信息:崩溃进程的相关信息,如崩溃报告的唯一标识符,唯一键值,设备标识
 Incident Identifier: 7B841E4F-8EBE-495B-A7FA-9DC2E28AE29A
 CrashReporter Key:   122bca8dadd5c0400efdef4f419e09e4be3977fb
 Hardware Model:      iPhone8,4
@@ -10,13 +14,14 @@ Role:                Foreground
 Parent Process:      launchd [1]
 Coalition:           gaojun.OnlineCrashAnalyse [11119]
 
-
+二,基本信息:崩溃发生的日期,操作系统版本,报告版本等;
 Date/Time:           2019-03-22 15:24:12.2439 +0800
 Launch Time:         2019-03-22 15:24:08.8000 +0800
 OS Version:          iPhone OS 11.2.1 (15C153)
 Baseband Version:    6.30.04
 Report Version:      104
 
+三,异常信息:异常类型,异常编码,异常的线程
 Exception Type:  EXC_CRASH (SIGABRT)
 Exception Codes: 0x0000000000000000, 0x0000000000000000
 Exception Note:  EXC_CORPSE_NOTIFY
@@ -27,6 +32,12 @@ abort() called
 
 Filtered syslog:
 None found
+
+四,线程回溯:崩溃时的方法调用栈
+***通常情况下,我们分析崩溃日志时最先看的是异常信息,分析出问题的是哪个线程,在线程回溯里找到那个线程;然后,分析
+方法调用栈,符号化后的方法调用栈可以完整地看到方法调用过程,从而知道问题发生在哪个方法的调用上.
+方法调用栈顶,就是最后导致崩溃的方法调用.
+异常编码参考:https://en.wikipedia.org/wiki/Hexspeak
 
 Last Exception Backtrace:            
 0   CoreFoundation                	0x181452364 __exceptionPreprocess + 124
